@@ -1,0 +1,662 @@
+{
+  "schema_version": "1.0",
+  "repository": "ha-jokes",
+  "identity": {
+    "description": "A custom Home Assistant integration that fetches random jokes from multiple sources and provides them as a sensor entity.",
+    "default_branch": "main",
+    "languages": {
+      "Python": 5,
+      "JavaScript": 1
+    },
+    "topics": [],
+    "licence": "MIT License",
+    "file_count": 22
+  },
+  "start_here": {
+    "readme": "README.md",
+    "agents_md": "AGENTS.md",
+    "entry_points": [],
+    "decision_records": [],
+    "build_config": [
+      "custom_components/ha_jokes/manifest.json",
+      "hacs.json"
+    ],
+    "source_roots": [
+      "custom_components",
+      "scripts"
+    ]
+  },
+  "documentation": [
+    {
+      "path": ".github/copilot-instructions.md",
+      "title": "Copilot instructions — ha-jokes",
+      "lines": 30,
+      "headings": [
+        {
+          "level": 2,
+          "text": "What this repo is",
+          "anchor": "what-this-repo-is"
+        },
+        {
+          "level": 2,
+          "text": "Repo shape",
+          "anchor": "repo-shape"
+        },
+        {
+          "level": 2,
+          "text": "Conventions",
+          "anchor": "conventions"
+        },
+        {
+          "level": 2,
+          "text": "Never",
+          "anchor": "never"
+        }
+      ]
+    },
+    {
+      "path": "BREAKING_CHANGES.md",
+      "title": "Breaking Changes",
+      "lines": 71,
+      "headings": [
+        {
+          "level": 2,
+          "text": "Version 1.7.0",
+          "anchor": "version-170"
+        },
+        {
+          "level": 3,
+          "text": "Minimum Home Assistant version is now 2024.11.0",
+          "anchor": "minimum-home-assistant-version-is-now-2024110"
+        },
+        {
+          "level": 2,
+          "text": "Version 1.2.0",
+          "anchor": "version-120"
+        },
+        {
+          "level": 3,
+          "text": "Sensor Entity ID Changed",
+          "anchor": "sensor-entity-id-changed"
+        }
+      ]
+    },
+    {
+      "path": "README.md",
+      "title": "Home Assistant Jokes Integration",
+      "lines": 484,
+      "headings": [
+        {
+          "level": 2,
+          "text": "Features",
+          "anchor": "features"
+        },
+        {
+          "level": 2,
+          "text": "Installation",
+          "anchor": "installation"
+        },
+        {
+          "level": 3,
+          "text": "HACS (Recommended)",
+          "anchor": "hacs-recommended"
+        },
+        {
+          "level": 3,
+          "text": "Manual Installation",
+          "anchor": "manual-installation"
+        },
+        {
+          "level": 2,
+          "text": "Configuration",
+          "anchor": "configuration"
+        },
+        {
+          "level": 3,
+          "text": "Initial Setup",
+          "anchor": "initial-setup"
+        },
+        {
+          "level": 3,
+          "text": "Changing Options",
+          "anchor": "changing-options"
+        },
+        {
+          "level": 3,
+          "text": "Joke Language",
+          "anchor": "joke-language"
+        },
+        {
+          "level": 2,
+          "text": "Usage",
+          "anchor": "usage"
+        },
+        {
+          "level": 3,
+          "text": "Attributes",
+          "anchor": "attributes"
+        },
+        {
+          "level": 3,
+          "text": "Example Usage in Lovelace",
+          "anchor": "example-usage-in-lovelace"
+        },
+        {
+          "level": 3,
+          "text": "Automations",
+          "anchor": "automations"
+        },
+        {
+          "level": 3,
+          "text": "AI-Powered Joke Explanations",
+          "anchor": "ai-powered-joke-explanations"
+        },
+        {
+          "level": 3,
+          "text": "Jokes Card (recommended)",
+          "anchor": "jokes-card-recommended"
+        },
+        {
+          "level": 2,
+          "text": "API Information",
+          "anchor": "api-information"
+        },
+        {
+          "level": 3,
+          "text": "Joke Sources",
+          "anchor": "joke-sources"
+        },
+        {
+          "level": 2,
+          "text": "Troubleshooting",
+          "anchor": "troubleshooting"
+        },
+        {
+          "level": 3,
+          "text": "Common Issues",
+          "anchor": "common-issues"
+        },
+        {
+          "level": 3,
+          "text": "Logs",
+          "anchor": "logs"
+        },
+        {
+          "level": 2,
+          "text": "Contributing",
+          "anchor": "contributing"
+        },
+        {
+          "level": 2,
+          "text": "Development Approach",
+          "anchor": "development-approach"
+        },
+        {
+          "level": 2,
+          "text": "License",
+          "anchor": "license"
+        },
+        {
+          "level": 2,
+          "text": "Support",
+          "anchor": "support"
+        },
+        {
+          "level": 2,
+          "text": "Credits",
+          "anchor": "credits"
+        }
+      ]
+    },
+    {
+      "path": "info.md",
+      "title": "Jokes Integration",
+      "lines": 42,
+      "headings": [
+        {
+          "level": 2,
+          "text": "What it does",
+          "anchor": "what-it-does"
+        },
+        {
+          "level": 2,
+          "text": "Key Features",
+          "anchor": "key-features"
+        },
+        {
+          "level": 2,
+          "text": "Perfect for",
+          "anchor": "perfect-for"
+        },
+        {
+          "level": 2,
+          "text": "Technical Details",
+          "anchor": "technical-details"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "source_roots": [
+      "custom_components",
+      "scripts"
+    ],
+    "symbol_source": "repomix (tree-sitter signatures)",
+    "routes": [],
+    "files": [
+      {
+        "path": "custom_components/ha_jokes/__init__.py",
+        "symbols": [
+          {
+            "kind": "const",
+            "name": "PLATFORMS",
+            "parent": "",
+            "signature": "PLATFORMS: list[Platform] = [Platform.SENSOR]"
+          },
+          {
+            "kind": "const",
+            "name": "CARD_URL",
+            "parent": "",
+            "signature": "CARD_URL = f\"/{DOMAIN}_frontend/ha-jokes-card.js\""
+          },
+          {
+            "kind": "const",
+            "name": "FRONTEND_REGISTERED",
+            "parent": "",
+            "signature": "FRONTEND_REGISTERED = f\"{DOMAIN}_frontend_registered\""
+          },
+          {
+            "kind": "function",
+            "name": "async_setup_entry",
+            "parent": "",
+            "signature": "async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool"
+          },
+          {
+            "kind": "function",
+            "name": "handle_explain_joke",
+            "parent": "",
+            "signature": "handle_explain_joke(call)"
+          },
+          {
+            "kind": "function",
+            "name": "async_unload_entry",
+            "parent": "",
+            "signature": "async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool"
+          },
+          {
+            "kind": "function",
+            "name": "async_reload_entry",
+            "parent": "",
+            "signature": "async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None"
+          }
+        ]
+      },
+      {
+        "path": "custom_components/ha_jokes/config_flow.py",
+        "symbols": [
+          {
+            "kind": "class",
+            "name": "JokesConfigFlow",
+            "parent": "",
+            "signature": "class JokesConfigFlow(config_entries.ConfigFlow, domain=DOMAIN)"
+          },
+          {
+            "kind": "class",
+            "name": "JokesOptionsFlow",
+            "parent": "",
+            "signature": "class JokesOptionsFlow(config_entries.OptionsFlow)"
+          }
+        ]
+      },
+      {
+        "path": "custom_components/ha_jokes/const.py",
+        "symbols": [
+          {
+            "kind": "const",
+            "name": "DOMAIN",
+            "parent": "",
+            "signature": "DOMAIN = \"ha_jokes\""
+          },
+          {
+            "kind": "const",
+            "name": "NAME",
+            "parent": "",
+            "signature": "NAME = \"Jokes\""
+          },
+          {
+            "kind": "const",
+            "name": "VERSION",
+            "parent": "",
+            "signature": "VERSION = \"1.7.0\""
+          },
+          {
+            "kind": "const",
+            "name": "API_URL_ICANHAZDADJOKE",
+            "parent": "",
+            "signature": "API_URL_ICANHAZDADJOKE = \"https://icanhazdadjoke.com\""
+          },
+          {
+            "kind": "const",
+            "name": "API_HEADERS_ICANHAZDADJOKE",
+            "parent": "",
+            "signature": "API_HEADERS_ICANHAZDADJOKE ="
+          },
+          {
+            "kind": "const",
+            "name": "API_URL_JOKEAPI",
+            "parent": "",
+            "signature": "API_URL_JOKEAPI = \"https://v2.jokeapi.dev/joke/Any?safe-mode&type=single\""
+          },
+          {
+            "kind": "const",
+            "name": "API_HEADERS_JOKEAPI",
+            "parent": "",
+            "signature": "API_HEADERS_JOKEAPI ="
+          },
+          {
+            "kind": "const",
+            "name": "API_URL_OFFICIAL",
+            "parent": "",
+            "signature": "API_URL_OFFICIAL = \"https://official-joke-api.appspot.com/random_joke\""
+          },
+          {
+            "kind": "const",
+            "name": "API_HEADERS_OFFICIAL",
+            "parent": "",
+            "signature": "API_HEADERS_OFFICIAL ="
+          },
+          {
+            "kind": "const",
+            "name": "API_URL_GEEKJOKES",
+            "parent": "",
+            "signature": "API_URL_GEEKJOKES = \"https://geek-jokes.sameerkumar.website/api?format=json\""
+          },
+          {
+            "kind": "const",
+            "name": "API_HEADERS_GEEKJOKES",
+            "parent": "",
+            "signature": "API_HEADERS_GEEKJOKES ="
+          },
+          {
+            "kind": "const",
+            "name": "API_URL_YOMAMA",
+            "parent": "",
+            "signature": "API_URL_YOMAMA = \"https://www.yomama-jokes.com/api/v1/jokes/random/\""
+          },
+          {
+            "kind": "const",
+            "name": "API_HEADERS_YOMAMA",
+            "parent": "",
+            "signature": "API_HEADERS_YOMAMA ="
+          },
+          {
+            "kind": "const",
+            "name": "API_URL",
+            "parent": "",
+            "signature": "API_URL = API_URL_ICANHAZDADJOKE"
+          },
+          {
+            "kind": "const",
+            "name": "API_HEADERS",
+            "parent": "",
+            "signature": "API_HEADERS = API_HEADERS_ICANHAZDADJOKE"
+          },
+          {
+            "kind": "const",
+            "name": "DEFAULT_REFRESH_INTERVAL",
+            "parent": "",
+            "signature": "DEFAULT_REFRESH_INTERVAL = 5  # minutes"
+          },
+          {
+            "kind": "const",
+            "name": "MIN_REFRESH_INTERVAL",
+            "parent": "",
+            "signature": "MIN_REFRESH_INTERVAL = 1     # minute"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_REFRESH_INTERVAL",
+            "parent": "",
+            "signature": "MAX_REFRESH_INTERVAL = 1440  # 24 hours in minutes"
+          },
+          {
+            "kind": "const",
+            "name": "SENSOR_NAME",
+            "parent": "",
+            "signature": "SENSOR_NAME = \"Joke\""
+          },
+          {
+            "kind": "const",
+            "name": "SENSOR_ICON",
+            "parent": "",
+            "signature": "SENSOR_ICON = \"mdi:emoticon-happy-outline\""
+          },
+          {
+            "kind": "const",
+            "name": "CONF_REFRESH_INTERVAL",
+            "parent": "",
+            "signature": "CONF_REFRESH_INTERVAL = \"refresh_interval\""
+          },
+          {
+            "kind": "const",
+            "name": "CONF_PROVIDERS",
+            "parent": "",
+            "signature": "CONF_PROVIDERS = \"providers\""
+          },
+          {
+            "kind": "const",
+            "name": "CONF_JOKEAPI_LANGUAGE",
+            "parent": "",
+            "signature": "CONF_JOKEAPI_LANGUAGE = \"jokeapi_language\""
+          },
+          {
+            "kind": "const",
+            "name": "ATTR_JOKE",
+            "parent": "",
+            "signature": "ATTR_JOKE = \"joke\""
+          },
+          {
+            "kind": "const",
+            "name": "ATTR_JOKE_ID",
+            "parent": "",
+            "signature": "ATTR_JOKE_ID = \"joke_id\""
+          },
+          {
+            "kind": "const",
+            "name": "ATTR_LAST_UPDATED",
+            "parent": "",
+            "signature": "ATTR_LAST_UPDATED = \"last_updated\""
+          },
+          {
+            "kind": "const",
+            "name": "ATTR_REFRESH_INTERVAL",
+            "parent": "",
+            "signature": "ATTR_REFRESH_INTERVAL = \"refresh_interval\""
+          },
+          {
+            "kind": "const",
+            "name": "ATTR_SOURCE",
+            "parent": "",
+            "signature": "ATTR_SOURCE = \"source\""
+          },
+          {
+            "kind": "const",
+            "name": "ATTR_EXPLANATION",
+            "parent": "",
+            "signature": "ATTR_EXPLANATION = \"explanation\""
+          },
+          {
+            "kind": "const",
+            "name": "PROVIDER_ICANHAZDADJOKE",
+            "parent": "",
+            "signature": "PROVIDER_ICANHAZDADJOKE = \"icanhazdadjoke\""
+          },
+          {
+            "kind": "const",
+            "name": "PROVIDER_JOKEAPI",
+            "parent": "",
+            "signature": "PROVIDER_JOKEAPI = \"jokeapi\""
+          },
+          {
+            "kind": "const",
+            "name": "PROVIDER_OFFICIAL",
+            "parent": "",
+            "signature": "PROVIDER_OFFICIAL = \"official_joke_api\""
+          },
+          {
+            "kind": "const",
+            "name": "PROVIDER_GEEKJOKES",
+            "parent": "",
+            "signature": "PROVIDER_GEEKJOKES = \"geek_jokes\""
+          },
+          {
+            "kind": "const",
+            "name": "PROVIDER_YOMAMA",
+            "parent": "",
+            "signature": "PROVIDER_YOMAMA = \"yomama_jokes\""
+          },
+          {
+            "kind": "const",
+            "name": "DEFAULT_PROVIDERS",
+            "parent": "",
+            "signature": "DEFAULT_PROVIDERS = ["
+          },
+          {
+            "kind": "const",
+            "name": "DEFAULT_JOKEAPI_LANGUAGE",
+            "parent": "",
+            "signature": "DEFAULT_JOKEAPI_LANGUAGE = \"en\""
+          },
+          {
+            "kind": "const",
+            "name": "JOKEAPI_LANGUAGE_OPTIONS",
+            "parent": "",
+            "signature": "JOKEAPI_LANGUAGE_OPTIONS ="
+          },
+          {
+            "kind": "const",
+            "name": "STATE_OK",
+            "parent": "",
+            "signature": "STATE_OK = \"OK\""
+          },
+          {
+            "kind": "const",
+            "name": "STATE_ERROR",
+            "parent": "",
+            "signature": "STATE_ERROR = \"Error\""
+          }
+        ]
+      },
+      {
+        "path": "custom_components/ha_jokes/sensor.py",
+        "symbols": [
+          {
+            "kind": "class",
+            "name": "JokesDataUpdateCoordinator",
+            "parent": "",
+            "signature": "class JokesDataUpdateCoordinator(DataUpdateCoordinator)"
+          },
+          {
+            "kind": "class",
+            "name": "JokesSensor",
+            "parent": "",
+            "signature": "class JokesSensor(CoordinatorEntity, SensorEntity)"
+          },
+          {
+            "kind": "function",
+            "name": "state",
+            "parent": "JokesSensor",
+            "signature": "state(self) -> str"
+          },
+          {
+            "kind": "function",
+            "name": "extra_state_attributes",
+            "parent": "JokesSensor",
+            "signature": "extra_state_attributes(self) -> dict[str, Any]"
+          },
+          {
+            "kind": "class",
+            "name": "JokeExplanationSensor",
+            "parent": "",
+            "signature": "class JokeExplanationSensor(CoordinatorEntity, SensorEntity)"
+          },
+          {
+            "kind": "function",
+            "name": "async_explain_joke",
+            "parent": "JokeExplanationSensor",
+            "signature": "async_explain_joke(self) -> None"
+          },
+          {
+            "kind": "function",
+            "name": "async_added_to_hass",
+            "parent": "JokeExplanationSensor",
+            "signature": "async_added_to_hass(self) -> None"
+          }
+        ]
+      },
+      {
+        "path": "custom_components/ha_jokes/www/ha-jokes-card.js",
+        "symbols": [
+          {
+            "kind": "class",
+            "name": "HaJokesCard",
+            "parent": "",
+            "signature": "class HaJokesCard extends HTMLElement"
+          },
+          {
+            "kind": "class",
+            "name": "HaJokesCardEditor",
+            "parent": "",
+            "signature": "class HaJokesCardEditor extends HTMLElement"
+          },
+          {
+            "kind": "function",
+            "name": "registerCard",
+            "parent": "",
+            "signature": "function registerCard()"
+          }
+        ]
+      },
+      {
+        "path": "scripts/check_versions.py",
+        "symbols": [
+          {
+            "kind": "const",
+            "name": "ROOT",
+            "parent": "",
+            "signature": "ROOT = Path(__file__).resolve().parent.parent"
+          },
+          {
+            "kind": "const",
+            "name": "COMPONENT",
+            "parent": "",
+            "signature": "COMPONENT = ROOT / \"custom_components\" / \"ha_jokes\""
+          },
+          {
+            "kind": "const",
+            "name": "CARD",
+            "parent": "",
+            "signature": "CARD = COMPONENT / \"www\" / \"ha-jokes-card.js\""
+          }
+        ]
+      }
+    ]
+  },
+  "tests": [],
+  "operations": [
+    ".github/workflows/release.yml",
+    ".github/workflows/validate.yml"
+  ],
+  "limitations": {
+    "unparsed_languages": [],
+    "excluded_dirs": [],
+    "code_map_truncated": false,
+    "code_map_symbols_capped": true,
+    "tracked_files_only": true
+  },
+  "generated": {
+    "source_commit": "c02311386c72d74954b8e49f2bbf8676261b5b38",
+    "content_hash": "8c863f49de09b523",
+    "generator": "navgen"
+  }
+}
